@@ -1,4 +1,4 @@
-let swVersion = 22;
+let swVersion = 33;
 
 let cacheFiles = [
     "/",
