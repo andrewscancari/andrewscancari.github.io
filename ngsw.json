@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1570195343866,
+  "timestamp": 1570223577369,
   "index": "/index.html",
   "assetGroups": [
     {
@@ -10,8 +10,8 @@
       "urls": [
         "/favicon.ico",
         "/index.html",
-        "/main-es2015.5a7a6df3a2fca81a75b7.js",
-        "/main-es5.5a7a6df3a2fca81a75b7.js",
+        "/main-es2015.6c77287d1d7ad58877ae.js",
+        "/main-es5.6c77287d1d7ad58877ae.js",
         "/manifest.webmanifest",
         "/polyfills-es2015.d3e61f0dd2b58e518eca.js",
         "/polyfills-es5.f8b5a32bf736d11d106f.js",
@@ -19,7 +19,9 @@
         "/runtime-es5.b948044840398824f16e.js",
         "/styles.c6b946f03462004a8326.css"
       ],
-      "patterns": []
+      "patterns": [
+        "https:\\/\\/fonts\\.googleapis\\.com\\/"
+      ]
     },
     {
       "name": "assets",
@@ -35,10 +37,24 @@
         "/assets/icons/icon-72x72.png",
         "/assets/icons/icon-96x96.png"
       ],
-      "patterns": []
+      "patterns": [
+        "https:\\/\\/raw\\.githubusercontent\\.com\\/PokeAPI\\/sprites\\/master\\/sprites"
+      ]
     }
   ],
-  "dataGroups": [],
+  "dataGroups": [
+    {
+      "name": "pokemon-api",
+      "patterns": [
+        "https:\\/\\/pokeapi\\.co\\/api\\/v2\\/pokemon"
+      ],
+      "strategy": "performance",
+      "maxSize": 10000,
+      "maxAge": 86400000,
+      "timeoutMs": 2000,
+      "version": 1
+    }
+  ],
   "hashTable": {
     "/assets/icons/icon-128x128.png": "dae3b6ed49bdaf4327b92531d4b5b4a5d30c7532",
     "/assets/icons/icon-144x144.png": "b0bd89982e08f9bd2b642928f5391915b74799a7",
@@ -49,9 +65,9 @@
     "/assets/icons/icon-72x72.png": "c457e56089a36952cd67156f9996bc4ce54a5ed9",
     "/assets/icons/icon-96x96.png": "3914125a4b445bf111c5627875fc190f560daa41",
     "/favicon.ico": "22f6a4a3bcaafafb0254e0f2fa4ceb89e505e8b2",
-    "/index.html": "74a64602ef7910f0f1f8b48cbcfed1f1005a5265",
-    "/main-es2015.5a7a6df3a2fca81a75b7.js": "db9a2914c572fd6ef033f9cfd346401d29800649",
-    "/main-es5.5a7a6df3a2fca81a75b7.js": "ecce900e3b59b5de28824f90e8b90786e61eec91",
+    "/index.html": "a40431766043629cfef12a5c09a282ef80536086",
+    "/main-es2015.6c77287d1d7ad58877ae.js": "e33fdf37d686436ee69758582f9bf522c0f592ac",
+    "/main-es5.6c77287d1d7ad58877ae.js": "8dad948a9b86f02f028b62e379071976f4a6f935",
     "/manifest.webmanifest": "8503bd786c8c53ffe5c6d02fe8223ee5a20f569c",
     "/polyfills-es2015.d3e61f0dd2b58e518eca.js": "e2f28c3743afd2899e140ad831df9675c233c02b",
     "/polyfills-es5.f8b5a32bf736d11d106f.js": "db091f7ef692a1d3add240459a2ea20c81cd6f19",
