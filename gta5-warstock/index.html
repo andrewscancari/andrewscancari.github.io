@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Warstock</title>
+
+    <link rel="stylesheet" href="styles/css-reset.css" />
+
+    <style>
+      body {
+        background-color: #37322c;
+      }
+
+      .gallery {
+        background-color: #0b0b0b;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin: auto;
+        max-width: 1010px;
+        padding: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="products_gallery" class="gallery">
+      <script src="./components/product.js"></script>
+
+      <script>
+        (async () => {
+          const productsData = await fetch("/mock-api/products.json")
+            .then((res) => (res.ok ? res.json() : []))
+            .catch((err) => {
+              console.log("request product api error", err);
+
+              return [];
+            });
+
+          const galleryEl = document.getElementById("products_gallery");
+
+          productsData.forEach((p) => {
+            const newProductEl = document.createElement("product-component");
+            newProductEl.id = `product_${p.name}`;
+            newProductEl.setAttribute("name", p.name);
+            newProductEl.setAttribute("price", p.price);
+            newProductEl.setAttribute("image", p.image);
+
+            if (p.discount) {
+              newProductEl.setAttribute("discount", p.discount);
+            }
+
+            galleryEl.appendChild(newProductEl);
+          });
+        })();
+      </script>
+    </div>
+  </body>
+</html>
