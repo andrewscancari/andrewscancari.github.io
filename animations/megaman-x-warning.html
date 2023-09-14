@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mega Man X Warning</title>
+
+    <style>
+      body {
+        background-color: black;
+        /* background-image: url("https://cdn.wikimg.net/en/strategywiki/images/1/1a/Mega_Man_X_Opening_Vile_Fight.png"); */
+        background-repeat: no-repeat;
+        background-size: cover;
+        margin: 0px;
+      }
+
+      .warning {
+        position: fixed;
+        width: 100%;
+        top: 60px;
+        background-color: transparent;
+        animation-name: warningfadeIn, backgroundWarning;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-delay: 1s, 5s;
+      }
+
+      .warning__bar {
+        border-bottom: 2px solid brown;
+        margin: 0 auto;
+        width: 0%;
+        animation-name: grownBars, fadeOut;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: 1;
+        animation-fill-mode: forwards;
+        animation-delay: 0s, 5s;
+      }
+
+      .warning__msg {
+        color: brown;
+        font-family: sans-serif;
+        font-size: 3rem;
+        margin: 2rem 0px;
+        text-align: center;
+        text-transform: uppercase;
+        opacity: 0;
+        animation-name: blinker;
+        animation-duration: 1s;
+        animation-timing-function: linear;
+        animation-iteration-count: 5;
+        animation-delay: 1s;
+      }
+
+      @keyframes blinker {
+        50% {
+          opacity: 1;
+        }
+      }
+
+      @keyframes fadeOut {
+        100% {
+          opacity: 0;
+        }
+      }
+
+      @keyframes grownBars {
+        0% {
+          width: 0%;
+        }
+        100% {
+          width: 100%;
+        }
+      }
+
+      @keyframes warningfadeIn {
+        100% {
+          background-color: rgba(165, 42, 42, 0.3);
+        }
+      }
+
+      @keyframes backgroundWarning {
+        100% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="warning">
+      <div class="warning__bar"></div>
+      <h1 class="warning__msg">warning</h1>
+      <div class="warning__bar"></div>
+    </div>
+  </body>
+</html>

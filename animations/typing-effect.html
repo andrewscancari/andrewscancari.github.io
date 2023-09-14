@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>playground</title>
+
+    <style>
+      body {
+        background-color: black;
+        color: lime;
+      }
+
+      #output {
+        font-size: 15px;
+        font-family: "Courier New", Courier, monospace;
+        background-color: black;
+      }
+
+      #output::after {
+        position: relative;
+        top: -3px;
+        content: "";
+        font-size: 10px;
+        background-color: lime;
+        border-width: 4px;
+        border-radius: 2px;
+        border-color: lime;
+        border-style: solid;
+        animation: blinker 1s linear infinite;
+      }
+
+      @keyframes blinker {
+        50% {
+          opacity: 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <p id="output">Texto</p>
+
+    <script>
+      async function typingEffect(element, msg) {
+        return new Promise((resolve) => {
+          if (!element || !element.innerHTML) {
+            throw new Error(
+              `element param is not valid or haven't an innerHTML attribute`
+            );
+          }
+
+          element.innerHTML = "";
+
+          let i = 0;
+
+          function typeWriter() {
+            if (i < msg.length) {
+              element.innerHTML += msg.charAt(i);
+              i++;
+              setTimeout(typeWriter, Math.random() * 100);
+            } else {
+              setTimeout(resolve, msg.length * 50);
+            }
+          }
+
+          typeWriter();
+        });
+      }
+
+      async function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+      }
+
+      (async () => {
+        const outputEl = document.getElementById("output");
+
+        await typingEffect(outputEl, "carregando...");
+
+        await typingEffect(outputEl, "terminou!");
+      })();
+    </script>
+  </body>
+</html>
