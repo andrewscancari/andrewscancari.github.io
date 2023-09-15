@@ -10,12 +10,12 @@
       body {
         background-color: black;
         color: lime;
-        font-family: 'Courier New', Courier, monospace;
+        font-family: monospace;
       }
-
+      
       h1 {
         background-color: rgb(44, 44, 44);
-        padding: 0px;
+        padding: 5px 0px;
         margin: 0px;
       }
 
@@ -25,6 +25,7 @@
         overflow-y: auto;
         margin: 24px;
         border: 5px solid rgb(44, 44, 44);
+        font-weight: 600;
       }
 
       #output {
@@ -59,68 +60,33 @@
   <body>
     <div id="terminal">
       <h1># typing effect terminal</h1>
-      <p id="output">&nbsp;</p>
+      <code id="output">&nbsp;</code>
     </div>
 
+    <script src="./typing-effect.js"></script>
+
     <script>
-      function getDeviceName() {
-        if (/Android/i.test(navigator.userAgent)) {
-          return 'Android';
-        } else if (/iPhone|iPad|iPod/i.test(navigator.userAgent)) {
-          return 'iPhone';
-        } else if (/Windows/i.test(navigator.userAgent)) {
-          if (/x64/i.test(navigator.userAgent)) {
-            return 'Windows (x64)';
-          }
-          return 'Windows';
-        } else if (/Linux/i.test(navigator.userAgent)) {
-          if (/x64/i.test(navigator.userAgent)) {
-            return 'Linux (x64)';
-          }
-        }
-
-        return navigator.userAgent;
-      }
-
-      async function typingEffect(element, msg) {
-        return new Promise((resolve) => {
-          if (!element || !element.innerHTML) {
-            throw new Error(
-              `element param is not valid or haven't an innerHTML attribute`
-            );
-          }
-
-          msg = `$ ${msg}`;
-
-          let i = 0;
-
-          function typeWriter() {
-            if (i < msg.length) {
-              element.innerHTML += msg.charAt(i);
-              i++;
-              setTimeout(typeWriter, Math.random() * 100);
-            } else {
-              setTimeout(resolve, msg.length * 50);
-            }
-          }
-          element.innerHTML += '<br />';
-
-          typeWriter();
-        });
-      }
-
-      async function sleep(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
-      }
-
       (async () => {
         const outputEl = document.getElementById('output');
         const device = getDeviceName();
 
         await typingEffect(outputEl, 'loading data...');
         await sleep(Math.random() * 100);
-        await typingEffect(outputEl, `User Agent: ${navigator.userAgent}`);
         await typingEffect(outputEl, `OS: ${device}`);
+        await typingEffect(outputEl, `User Agent: ${navigator.userAgent}`);
+        await typingEffect(outputEl, `Resolution: ${window.innerWidth}x${window.innerHeight}`);
+        
+        let navigatorValue
+        for (let key in navigator) {
+          navigatorValue = navigator[key]
+          if (typeof navigatorValue === 'object') {
+            for (let subKey in navigatorValue) {
+              await typingEffect(outputEl, `${key}.${subKey}: ${JSON.stringify(navigatorValue[subKey], undefined, 4)} - type ${typeof navigatorValue[subKey]}`);  
+            }
+          } else {
+            await typingEffect(outputEl, `${key}: ${JSON.stringify(navigatorValue, undefined, 4)} - type ${typeof navigatorValue}`);
+          }
+        }
       })();
     </script>
   </body>
